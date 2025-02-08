@@ -101,19 +101,6 @@ export default function ManageProducts() {
     setCategory("");
   }
 
-  function deleteProduct(id) {
-    axios
-      .delete(baseUrl + `/Products/DeleteProducts/${id}`)
-      .then((res) => {
-        toast.success(res.data);
-        getProducts();
-        ClearFields();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
   const AssignData = (product) => {
     setName(product.name);
     setPrice(product.price);
@@ -238,22 +225,16 @@ export default function ManageProducts() {
                     <strong>Description:</strong> {plant.description}
                   </p>
                 </div>
-                <div className="card-footer d-flex justify-content-end">
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => deleteProduct(plant.id)}
-                  >
-                    Delete
-                  </button>
-                  {pathname === "/AdminDashboard/manageproducts" && (
+                {pathname === "/AdminDashboard/manageproducts" && (
+                  <div className="card-footer d-flex justify-content-end">
                     <button
                       className="btn btn-warning ms-3"
                       onClick={() => AssignData(plant)}
                     >
                       Edit
                     </button>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             </Col>
           ))}

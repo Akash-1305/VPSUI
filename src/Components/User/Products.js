@@ -43,7 +43,7 @@ const Products = () => {
 
   const getProducts = () => {
     axios
-      .get(baseUrl + "/Products/GetAllProducts")
+      .get(baseUrl + "/Products/GetProducts")
       .then(({ data }) => {
         setProductList(data);
         setFilterProductList(data);
@@ -129,7 +129,7 @@ const Products = () => {
                     src={plant.image}
                     alt={plant.name}
                     className="card-img-top image-hover-effect"
-                    style={{ maxHeight: "250px", objectFit: "cover" }}
+                    style={{ height: "250px", objectFit: "cover" }}
                   />
                   <div className="card-body">
                     <h5 className="card-title">{plant.name}</h5>
@@ -170,7 +170,6 @@ const Products = () => {
                   <button
                     className="btn btn-warning"
                     onClick={() => addToCart(plant.id)}
-                    disabled={plant.availability !== "In Stock"}
                   >
                     Add to cart
                   </button>
